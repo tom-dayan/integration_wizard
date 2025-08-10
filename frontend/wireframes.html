@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integration Wizard Key Screens</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8fafc;
+            color: #2d3748;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .wireframe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .wireframe {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .wireframe-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .screen {
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            padding: 20px;
+            background: #fafafa;
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .progress-bar {
+            background: #e2e8f0;
+            height: 6px;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: #4299e1;
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        
+        .step-1 .progress-fill { width: 20%; }
+        .step-2 .progress-fill { width: 40%; }
+        .step-3 .progress-fill { width: 60%; }
+        .step-4 .progress-fill { width: 80%; }
+        .step-5 .progress-fill { width: 100%; }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        
+        .step-subtitle {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .upload-area {
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: #a0aec0;
+            margin-bottom: 10px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .category-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .category-card:hover {
+            border-color: #4299e1;
+            background: #ebf8ff;
+        }
+        
+        .form-group {
+            margin: 15px 0;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            background: white;
+            box-sizing: border-box;
+        }
+        
+        .mapping-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+        }
+        
+        .confidence-badge {
+            background: #48bb78;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .confidence-low { background: #ed8936; }
+        .confidence-medium { background: #ecc94b; color: #2d3748; }
+        
+        .button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .button-primary {
+            background: #4299e1;
+            color: white;
+        }
+        
+        .button-primary:hover {
+            background: #3182ce;
+        }
+        
+        .button-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-success { background: #48bb78; }
+        .status-pending { background: #ecc94b; }
+        .status-error { background: #f56565; }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .metric-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        
+        .metric-label {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Integration Wizard UI Wireframes</h1>
+        
+        <div class="wireframe-grid">
+            <!-- Step 1: Start -->
+            <div class="wireframe">
+                <div class="wireframe-title">Step 1: Getting Started</div>
+                <div class="screen step-1">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    
+                    <div class="header">
+                        <div class="step-title">Add New Integration</div>
+                        <div class="step-subtitle">Choose how you'd like to start</div>
+                    </div>
+                    
+                    <div class="upload-area">
+                        <div style="font-size: 2rem; margin-bottom: 8px; color: #a0aec0;">[FILE]</div>
+                        <div><strong>Upload Documentation</strong></div>
+                        <div style="font-size: 0.9rem; color: #718096;">PDF, OpenAPI spec, or documentation URL</div>
+                    </div>
+                    
+                    <div style="text-align: center; margin: 20px 0; color: #a0aec0;">OR</div>
+                    
+                    <div class="category-grid">
+                        <div class="category-card">
+                            <div style="font-size: 1.2rem; margin-bottom: 3px; color: #4299e1;">[PAY]</div>
+                            <div><strong>Payroll</strong></div>
+                            <div style="font-size: 0.8rem; color: #718096;">ADP, Gusto, etc.</div>
+                        </div>
+                        <div class="category-card">
+                            <div style="font-size: 1.2rem; margin-bottom: 3px; color: #48bb78;">[CRM]</div>
+                            <div><strong>CRM</strong></div>
+                            <div style="font-size: 0.8rem; color: #718096;">Salesforce, HubSpot</div>
+                        </div>
+                        <div class="category-card">
+                            <div style="font-size: 1.2rem; margin-bottom: 3px; color: #ed8936;">[PAY]</div>
+                            <div><strong>Payments</strong></div>
+                            <div style="font-size: 0.8rem; color: #718096;">Stripe, PayPal</div>
+                        </div>
+                        <div class="category-card">
+                            <div style="font-size: 1.2rem; margin-bottom: 3px; color: #9f7aea;">[HR]</div>
+                            <div><strong>HRIS</strong></div>
+                            <div style="font-size: 0.8rem; color: #718096;">Workday, BambooHR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="button button-secondary">Cancel</button>
+                        <button class="button button-primary">Continue</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2: Configuration -->
+            <div class="wireframe">
+                <div class="wireframe-title">Step 2: Configuration</div>
+                <div class="screen step-2">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    
+                    <div class="header">
+                        <div class="step-title">Configure Integration</div>
+                        <div class="step-subtitle">Stripe Payment Processor</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Integration Name</label>
+                        <input class="form-input" type="text" placeholder="e.g., Stripe Production" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Environment</label>
+                        <select class="form-input">
+                            <option>Sandbox</option>
+                            <option>Production</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">API Key</label>
+                        <input class="form-input" type="password" placeholder="sk_test_..." />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Webhook Endpoint (Optional)</label>
+                        <input class="form-input" type="url" placeholder="https://your-app.com/webhooks/stripe" />
+                    </div>
+                    
+                    <div style="background: #ebf8ff; border: 1px solid #bee3f8; border-radius: 6px; padding: 15px; margin: 20px 0;">
+                        <div style="font-weight: 600; color: #2b6cb0; margin-bottom: 5px;">Auto-detected Settings</div>
+                        <div style="font-size: 0.9rem; color: #2c5282;">
+                            • Authentication: API Key<br/>
+                            • Rate Limit: 100 req/sec<br/>
+                            • Required Scopes: payments, customers
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="button button-secondary">Back</button>
+                        <button class="button button-primary">Test Connection</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3: Field Mapping -->
+            <div class="wireframe">
+                <div class="wireframe-title">Step 3: Field Mapping</div>
+                <div class="screen step-3">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    
+                    <div class="header">
+                        <div class="step-title">Review Field Mappings</div>
+                        <div class="step-subtitle">AI-suggested mappings based on schema analysis</div>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <div class="mapping-row">
+                            <div>
+                                <strong>customer.email</strong> → <strong>user_email</strong>
+                            </div>
+                            <span class="confidence-badge">High</span>
+                        </div>
+                        
+                        <div class="mapping-row">
+                            <div>
+                                <strong>payment.amount</strong> → <strong>transaction_amount</strong>
+                            </div>
+                            <span class="confidence-badge">High</span>
+                        </div>
+                        
+                        <div class="mapping-row">
+                            <div>
+                                <strong>payment.currency</strong> → <strong>currency_code</strong>
+                            </div>
+                            <span class="confidence-badge confidence-medium">Medium</span>
+                        </div>
+                        
+                        <div class="mapping-row">
+                            <div>
+                                <strong>metadata.order_id</strong> → <strong>?</strong>
+                            </div>
+                            <span class="confidence-badge confidence-low">Manual</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #fef5e7; border: 1px solid #f6e05e; border-radius: 6px; padding: 15px; margin: 20px 0;">
+                        <div style="font-weight: 600; color: #b7791f; margin-bottom: 5px;">Review Required</div>
+                        <div style="font-size: 0.9rem; color: #975a16;">
+                            1 field requires manual mapping
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="button button-secondary">Back</button>
+                        <button class="button button-primary">Continue</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 4: Testing -->
+            <div class="wireframe">
+                <div class="wireframe-title">Step 4: Testing & Validation</div>
+                <div class="screen step-4">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    
+                    <div class="header">
+                        <div class="step-title">Running Tests</div>
+                        <div class="step-subtitle">Validating connection and data flow</div>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <div style="padding: 15px; margin: 10px 0; background: white; border: 1px solid #e2e8f0; border-radius: 6px;">
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-indicator status-success"></span>
+                                <strong>Connection Test</strong>
+                            </div>
+                            <div style="color: #718096; font-size: 0.9rem; margin-top: 5px;">
+                                Successfully connected to Stripe API
+                            </div>
+                        </div>
+                        
+                        <div style="padding: 15px; margin: 10px 0; background: white; border: 1px solid #e2e8f0; border-radius: 6px;">
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-indicator status-success"></span>
+                                <strong>Schema Validation</strong>
+                            </div>
+                            <div style="color: #718096; font-size: 0.9rem; margin-top: 5px;">
+                                All mapped fields validated successfully
+                            </div>
+                        </div>
+                        
+                        <div style="padding: 15px; margin: 10px 0; background: white; border: 1px solid #e2e8f0; border-radius: 6px;">
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-indicator status-pending"></span>
+                                <strong>Sample Data Test</strong>
+                            </div>
+                            <div style="color: #718096; font-size: 0.9rem; margin-top: 5px;">
+                                Testing with sample payment data...
+                            </div>
+                        </div>
+                        
+                        <div style="padding: 15px; margin: 10px 0; background: white; border: 1px solid #e2e8f0; border-radius: 6px;">
+                            <div style="display: flex; align-items: center;">
+                                <span class="status-indicator status-success"></span>
+                                <strong>Rate Limit Check</strong>
+                            </div>
+                            <div style="color: #718096; font-size: 0.9rem; margin-top: 5px;">
+                                Rate limiting configured properly
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="button button-secondary">Back</button>
+                        <button class="button button-primary">Deploy Integration</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 5: Dashboard -->
+            <div class="wireframe">
+                <div class="wireframe-title">Step 5: Integration Dashboard</div>
+                <div class="screen step-5">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    
+                    <div class="header">
+                        <div class="step-title">Integration Active</div>
+                        <div class="step-subtitle">Monitor performance and manage settings</div>
+                    </div>
+                    
+                    <div class="dashboard-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">1,247</div>
+                            <div class="metric-label">Requests Today</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">99.8%</div>
+                            <div class="metric-label">Success Rate</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">127ms</div>
+                            <div class="metric-label">Avg Response</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">0</div>
+                            <div class="metric-label">Errors</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <div style="font-weight: 600; margin-bottom: 10px;">Recent Activity</div>
+                        
+                        <div style="padding: 10px; margin: 5px 0; background: white; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Payment processed: $127.50</span>
+                                <span style="color: #718096;">2 min ago</span>
+                            </div>
+                        </div>
+                        
+                        <div style="padding: 10px; margin: 5px 0; background: white; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Customer created: john@example.com</span>
+                                <span style="color: #718096;">5 min ago</span>
+                            </div>
+                        </div>
+                        
+                        <div style="padding: 10px; margin: 5px 0; background: white; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.9rem;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Webhook received: payment.succeeded</span>
+                                <span style="color: #718096;">7 min ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="button button-secondary">View Logs</button>
+                        <button class="button button-primary">Manage Integration</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Template Selection -->
+            <div class="wireframe">
+                <div class="wireframe-title">Template Selection Screen</div>
+                <div class="screen">
+                    <div class="header">
+                        <div class="step-title">Choose Template</div>
+                        <div class="step-subtitle">Based on your selection: Payments</div>
