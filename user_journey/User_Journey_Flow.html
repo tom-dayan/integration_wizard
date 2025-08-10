@@ -35,16 +35,23 @@
             flex-direction: column;
             align-items: center;
             margin: 40px 0;
-            gap: 20px;
+            gap: 30px;
+            max-width: 800px;
+            margin: 40px auto;
         }
         
         .flow-row {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
+            gap: 40px;
             width: 100%;
-            flex-wrap: wrap;
+        }
+        
+        .single-step {
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
         
         .step {
@@ -99,17 +106,36 @@
             line-height: 1.4;
         }
         
-        .arrow {
+        .arrow-right {
             color: #4299e1;
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
+            margin: 0 10px;
         }
         
         .arrow-down {
             color: #4299e1;
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: bold;
-            transform: rotate(90deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+        }
+        
+        .flow-connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .flow-label {
+            font-size: 0.8rem;
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .confidence-score {
@@ -146,24 +172,27 @@
             padding-left: 20px;
         }
         
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
             .flow-row {
                 flex-direction: column;
                 gap: 20px;
             }
             
-            .arrow {
+            .arrow-right {
                 transform: rotate(90deg);
+                margin: 10px 0;
             }
-        }
-        
-        @media (max-width: 768px) {
+            
             .step {
                 width: 280px;
             }
             
             .container {
                 padding: 20px;
+            }
+            
+            .journey-flow {
+                gap: 20px;
             }
         }
     </style>
@@ -173,17 +202,24 @@
         <h1>🎯 Enhanced Integration Wizard Journey</h1>
         
         <div class="journey-flow">
-            <!-- Row 1: Start → Discover -->
-            <div class="flow-row">
+            <!-- Step 1: Start -->
+            <div class="single-step">
                 <div class="step start">
                     <div class="step-number">1</div>
                     <div class="step-title">Start</div>
                     <div class="step-desc">Select category or upload documentation</div>
                     <div class="confidence-score">AI</div>
                 </div>
-                
-                <div class="arrow">→</div>
-                
+            </div>
+            
+            <!-- Down Arrow with label -->
+            <div class="flow-connector">
+                <div class="flow-label">AI Processing</div>
+                <div class="arrow-down">⬇</div>
+            </div>
+            
+            <!-- Step 2: Discover -->
+            <div class="single-step">
                 <div class="step discover">
                     <div class="step-number">2</div>
                     <div class="step-title">Discover</div>
@@ -192,19 +228,29 @@
                 </div>
             </div>
             
-            <!-- Arrow pointing down -->
-            <div class="arrow-down">→</div>
+            <!-- Down Arrow with label -->
+            <div class="flow-connector">
+                <div class="flow-label">User Input</div>
+                <div class="arrow-down">⬇</div>
+            </div>
             
-            <!-- Row 2: Configure → Validate -->
-            <div class="flow-row">
+            <!-- Step 3: Configure -->
+            <div class="single-step">
                 <div class="step configure">
                     <div class="step-number">3</div>
                     <div class="step-title">Configure</div>
                     <div class="step-desc">Enter credentials, review AI-suggested mappings</div>
                 </div>
-                
-                <div class="arrow">→</div>
-                
+            </div>
+            
+            <!-- Down Arrow with label -->
+            <div class="flow-connector">
+                <div class="flow-label">Automated Testing</div>
+                <div class="arrow-down">⬇</div>
+            </div>
+            
+            <!-- Step 4: Validate -->
+            <div class="single-step">
                 <div class="step validate">
                     <div class="step-number">4</div>
                     <div class="step-title">Validate</div>
@@ -212,27 +258,44 @@
                 </div>
             </div>
             
-            <!-- Arrow pointing down -->
-            <div class="arrow-down">→</div>
+            <!-- Down Arrow with label -->
+            <div class="flow-connector">
+                <div class="flow-label">User Approval</div>
+                <div class="arrow-down">⬇</div>
+            </div>
             
-            <!-- Row 3: Review → Deploy → Observe -->
-            <div class="flow-row">
+            <!-- Step 5: Review -->
+            <div class="single-step">
                 <div class="step review">
                     <div class="step-number">5</div>
                     <div class="step-title">Review</div>
                     <div class="step-desc">Approve integration plan with security insights</div>
                 </div>
-                
-                <div class="arrow">→</div>
-                
+            </div>
+            
+            <!-- Down Arrow with label -->
+            <div class="flow-connector">
+                <div class="flow-label">Deployment</div>
+                <div class="arrow-down">⬇</div>
+            </div>
+            
+            <!-- Step 6: Deploy -->
+            <div class="single-step">
                 <div class="step deploy">
                     <div class="step-number">6</div>
                     <div class="step-title">Deploy</div>
                     <div class="step-desc">Activate with staged deployment and monitoring</div>
                 </div>
-                
-                <div class="arrow">→</div>
-                
+            </div>
+            
+            <!-- Down Arrow with label -->
+            <div class="flow-connector">
+                <div class="flow-label">Live Monitoring</div>
+                <div class="arrow-down">⬇</div>
+            </div>
+            
+            <!-- Step 7: Observe -->
+            <div class="single-step">
                 <div class="step observe">
                     <div class="step-number">7</div>
                     <div class="step-title">Observe</div>
