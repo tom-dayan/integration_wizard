@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Journey Flow</title>
+    <title>Enhanced User Journey Flow</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -32,23 +32,32 @@
         
         .journey-flow {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
             margin: 40px 0;
-            flex-wrap: wrap;
             gap: 20px;
+        }
+        
+        .flow-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+            flex-wrap: wrap;
         }
         
         .step {
             background: white;
             border-radius: 12px;
             padding: 20px;
-            min-width: 200px;
+            width: 220px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             border: 2px solid;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
+            flex-shrink: 0;
         }
         
         .step:hover {
@@ -96,6 +105,13 @@
             font-weight: bold;
         }
         
+        .arrow-down {
+            color: #4299e1;
+            font-size: 2rem;
+            font-weight: bold;
+            transform: rotate(90deg);
+        }
+        
         .confidence-score {
             position: absolute;
             top: -8px;
@@ -130,13 +146,24 @@
             padding-left: 20px;
         }
         
-        @media (max-width: 768px) {
-            .journey-flow {
+        @media (max-width: 1200px) {
+            .flow-row {
                 flex-direction: column;
+                gap: 20px;
             }
             
             .arrow {
                 transform: rotate(90deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .step {
+                width: 280px;
+            }
+            
+            .container {
+                padding: 20px;
             }
         }
     </style>
@@ -146,60 +173,71 @@
         <h1>🎯 Enhanced Integration Wizard Journey</h1>
         
         <div class="journey-flow">
-            <div class="step start">
-                <div class="step-number">1</div>
-                <div class="step-title">Start</div>
-                <div class="step-desc">Select category or upload documentation</div>
-                <div class="confidence-score">AI</div>
+            <!-- Row 1: Start → Discover -->
+            <div class="flow-row">
+                <div class="step start">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Start</div>
+                    <div class="step-desc">Select category or upload documentation</div>
+                    <div class="confidence-score">AI</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="step discover">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Discover</div>
+                    <div class="step-desc">Parse docs, classify integration with confidence scoring</div>
+                    <div class="confidence-score">ML</div>
+                </div>
             </div>
             
-            <div class="arrow">→</div>
+            <!-- Arrow pointing down -->
+            <div class="arrow-down">→</div>
             
-            <div class="step discover">
-                <div class="step-number">2</div>
-                <div class="step-title">Discover</div>
-                <div class="step-desc">Parse docs, classify integration with confidence scoring</div>
-                <div class="confidence-score">ML</div>
+            <!-- Row 2: Configure → Validate -->
+            <div class="flow-row">
+                <div class="step configure">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Configure</div>
+                    <div class="step-desc">Enter credentials, review AI-suggested mappings</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="step validate">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Validate</div>
+                    <div class="step-desc">Run automated test calls, verify schemas</div>
+                </div>
             </div>
             
-            <div class="arrow">→</div>
+            <!-- Arrow pointing down -->
+            <div class="arrow-down">→</div>
             
-            <div class="step configure">
-                <div class="step-number">3</div>
-                <div class="step-title">Configure</div>
-                <div class="step-desc">Enter credentials, review AI-suggested mappings</div>
-            </div>
-            
-            <div class="arrow">→</div>
-            
-            <div class="step validate">
-                <div class="step-number">4</div>
-                <div class="step-title">Validate</div>
-                <div class="step-desc">Run automated test calls, verify schemas</div>
-            </div>
-        </div>
-        
-        <div class="journey-flow">
-            <div class="step review">
-                <div class="step-number">5</div>
-                <div class="step-title">Review</div>
-                <div class="step-desc">Approve integration plan with security insights</div>
-            </div>
-            
-            <div class="arrow">→</div>
-            
-            <div class="step deploy">
-                <div class="step-number">6</div>
-                <div class="step-title">Deploy</div>
-                <div class="step-desc">Activate with staged deployment and monitoring</div>
-            </div>
-            
-            <div class="arrow">→</div>
-            
-            <div class="step observe">
-                <div class="step-number">7</div>
-                <div class="step-title">Observe</div>
-                <div class="step-desc">Real-time dashboard, logs, alerts, and KPIs</div>
+            <!-- Row 3: Review → Deploy → Observe -->
+            <div class="flow-row">
+                <div class="step review">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Review</div>
+                    <div class="step-desc">Approve integration plan with security insights</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="step deploy">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Deploy</div>
+                    <div class="step-desc">Activate with staged deployment and monitoring</div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="step observe">
+                    <div class="step-number">7</div>
+                    <div class="step-title">Observe</div>
+                    <div class="step-desc">Real-time dashboard, logs, alerts, and KPIs</div>
+                </div>
             </div>
         </div>
         
