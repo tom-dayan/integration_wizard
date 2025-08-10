@@ -14,7 +14,7 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background: white;
             border-radius: 16px;
@@ -32,8 +32,8 @@
         
         .architecture {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
             margin-bottom: 40px;
         }
         
@@ -51,7 +51,7 @@
         }
         
         .layer-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: #2d3748;
             margin-bottom: 15px;
@@ -68,22 +68,60 @@
         }
         
         .frontend { border-left-color: #48bb78; }
-        .api { border-left-color: #4299e1; }
         .intelligence { border-left-color: #9f7aea; }
         .integration { border-left-color: #ed8936; }
-        .data { border-left-color: #38b2ac; }
-        .infrastructure { border-left-color: #e53e3e; }
         
         .component-name {
             font-weight: 600;
             color: #2d3748;
             margin-bottom: 5px;
+            font-size: 0.95rem;
         }
         
         .component-desc {
             color: #718096;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.4;
+        }
+        
+        .tech-stack {
+            background: #edf2f7;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .tech-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .tech-category {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .tech-category-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .tech-list {
+            color: #718096;
+            font-size: 0.8rem;
+            line-height: 1.3;
         }
         
         .data-flow {
@@ -100,31 +138,83 @@
             margin-bottom: 15px;
         }
         
+        .flow-container {
+            margin-bottom: 20px;
+        }
+        
         .flow-steps {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
         
         .flow-step {
             background: white;
             border-radius: 8px;
-            padding: 12px 16px;
+            padding: 10px 14px;
             text-align: center;
-            min-width: 120px;
+            min-width: 100px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-size: 0.85rem;
+            font-weight: 500;
         }
         
         .arrow {
             color: #4299e1;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
+        }
+        
+        .security-reliability {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .security-section, .reliability-section {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 12px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .feature-list li {
+            background: white;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin: 6px 0;
+            font-size: 0.85rem;
+            border-left: 3px solid #4299e1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         
         @media (max-width: 768px) {
             .architecture {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .security-reliability {
                 grid-template-columns: 1fr;
             }
             
@@ -154,7 +244,7 @@
                 
                 <div class="component frontend">
                     <div class="component-name">Dashboard</div>
-                    <div class="component-desc">Monitoring, logs, and integration management</div>
+                    <div class="component-desc">Real-time monitoring, logs, and integration management</div>
                 </div>
                 
                 <div class="component frontend">
@@ -169,7 +259,7 @@
                 
                 <div class="component intelligence">
                     <div class="component-name">Document Parser</div>
-                    <div class="component-desc">OCR, PDF parsing, OpenAPI spec analysis</div>
+                    <div class="component-desc">OCR, PDF parsing, and OpenAPI spec analysis</div>
                 </div>
                 
                 <div class="component intelligence">
@@ -182,7 +272,7 @@
                     <div class="component-desc">AI-powered field mapping with confidence scoring</div>
                 </div>
                 
-                <div class="component api">
+                <div class="component intelligence">
                     <div class="component-name">Orchestration API</div>
                     <div class="component-desc">Workflow management and state transitions</div>
                 </div>
@@ -202,30 +292,119 @@
                     <div class="component-desc">Automated testing and validation</div>
                 </div>
                 
-                <div class="component data">
+                <div class="component integration">
                     <div class="component-name">Template Engine</div>
                     <div class="component-desc">Reusable integration patterns and configs</div>
                 </div>
                 
-                <div class="component infrastructure">
+                <div class="component integration">
                     <div class="component-name">Secrets Manager</div>
                     <div class="component-desc">Secure credential storage and rotation</div>
                 </div>
             </div>
         </div>
         
+        <div class="tech-stack">
+            <div class="tech-title">Technology Stack</div>
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <div class="tech-category-title">Core Platform</div>
+                    <div class="tech-list">
+                        Node.js + TypeScript<br>
+                        React Frontend<br>
+                        API Gateway
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="tech-category-title">Data Layer</div>
+                    <div class="tech-list">
+                        PostgreSQL Database<br>
+                        Redis Caching<br>
+                        Message Queues
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="tech-category-title">Intelligence</div>
+                    <div class="tech-list">
+                        ML Classification<br>
+                        Document Parsing<br>
+                        Confidence Scoring
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="tech-category-title">Security</div>
+                    <div class="tech-list">
+                        OAuth 2.0 + JWT<br>
+                        AES-256 Encryption<br>
+                        Vault Management
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div class="data-flow">
-            <div class="flow-title">Automated Data Flow and Processing</div>
-            <div class="flow-steps">
-                <div class="flow-step">Upload Docs</div>
-                <div class="arrow">→</div>
-                <div class="flow-step">Parse and Extract</div>
-                <div class="arrow">→</div>
-                <div class="flow-step">Classify and Match</div>
-                <div class="arrow">→</div>
-                <div class="flow-step">Generate Config</div>
-                <div class="arrow">→</div>
-                <div class="flow-step">Test and Deploy</div>
+            <div class="flow-title">Integration Creation Flow</div>
+            <div class="flow-container">
+                <div class="flow-steps">
+                    <div class="flow-step">Document Upload</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Parse & Extract</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Classify</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Generate Config</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Test & Validate</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Deploy</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Monitor</div>
+                </div>
+            </div>
+            
+            <div class="flow-title">Runtime Processing Flow</div>
+            <div class="flow-container">
+                <div class="flow-steps">
+                    <div class="flow-step">External API</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Authentication</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Rate Limiting</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Transform</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Validate</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Cakewalk API</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-step">Audit Log</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="security-reliability">
+            <div class="security-section">
+                <div class="section-title">Security Architecture</div>
+                <ul class="feature-list">
+                    <li>JWT tokens with secure refresh</li>
+                    <li>Role-based access control</li>
+                    <li>AES-256 encryption at rest</li>
+                    <li>TLS encryption in transit</li>
+                    <li>Vault-based credential management</li>
+                    <li>Comprehensive audit logging</li>
+                </ul>
+            </div>
+            
+            <div class="reliability-section">
+                <div class="section-title">Error Handling & Reliability</div>
+                <ul class="feature-list">
+                    <li>Exponential backoff retry logic</li>
+                    <li>Circuit breaker patterns</li>
+                    <li>Graceful degradation workflows</li>
+                    <li>Health checks and monitoring</li>
+                    <li>Auto-scaling capabilities</li>
+                    <li>Rate limiting protection</li>
+                </ul>
             </div>
         </div>
     </div>
